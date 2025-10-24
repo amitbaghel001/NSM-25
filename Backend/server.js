@@ -10,14 +10,18 @@ import aiAnalysisRoutes from './routes/aiAnalysis.js';
 import schedulingRoutes from './routes/scheduling.js';
 
 dotenv.config();
-
 const app = express();
 
 // Connect to MongoDB
 connectDB();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://casemadad.netlify.app'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static('uploads'));
@@ -28,9 +32,11 @@ app.use('/api/cases', caseRoutes);
 app.use('/api/documents', documentRoutes);
 app.use('/api/cases', similarCasesRoutes);
 app.use('/api/scheduling', schedulingRoutes);
-// Health check
+app.use('/api/ai', aiAnalysisRoutes);
+
+// Health check (main route)
 app.get('/', (req, res) => {
-  res.json({ message: 'Legal Document Intelligence API is running' });
+  res.json({ message: 'Backend running successfully 🚀' });
 });
 
 // Error handling middleware
@@ -39,7 +45,8 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: err.message });
 });
 
+// Dynamic Port for Render
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`✅ Server running on port ${PORT}`);
 });
