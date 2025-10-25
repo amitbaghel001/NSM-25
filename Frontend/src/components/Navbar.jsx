@@ -44,7 +44,7 @@ const Navbar = () => {
           to="/" 
           sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}
         >
-          JusticeLens
+          Legal Document Intelligence 
         </Typography>
         
         {user ? (
