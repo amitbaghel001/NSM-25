@@ -111,7 +111,8 @@ async function scrapeCase(caseID, index) {
 async function import100RealCases() {
   try {
     console.log('🔗 Connecting to MongoDB...');
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/legal-docs');
+ 
+    await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/legal-docs');
     console.log('✅ Connected\n');
 
     await Case.deleteMany({});

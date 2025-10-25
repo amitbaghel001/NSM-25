@@ -220,7 +220,9 @@ async function main() {
     
     // Connect to MongoDB
     console.log('\n📡 Connecting to MongoDB...');
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/legal-docs');
+    // await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/legal-docs');
+    
+    await mongoose.connect(process.env.MONGO_URI);
     console.log('✅ Connected to MongoDB\n');
     
     // Get user ID (you'll need to replace this with actual user ID)

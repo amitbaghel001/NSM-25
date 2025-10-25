@@ -1,6 +1,10 @@
+// Load environment variables FIRST
+import dotenv from 'dotenv';
+dotenv.config();
+
+// NOW import everything else
 import express from 'express';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import authRoutes from './routes/auth.js';
 import caseRoutes from './routes/cases.js';
@@ -9,7 +13,9 @@ import similarCasesRoutes from './routes/similarCases.js';
 import aiAnalysisRoutes from './routes/aiAnalysis.js';
 import schedulingRoutes from './routes/scheduling.js';
 
-dotenv.config();
+// Debug line (you can remove this later)
+console.log("MONGO_URI:", process.env.MONGO_URI);
+
 const app = express();
 
 // Connect to MongoDB

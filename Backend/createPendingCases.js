@@ -7,10 +7,15 @@ dotenv.config();
 async function createPendingCases() {
   try {
     console.log('🔗 Connecting to MongoDB...');
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/legal-docs');
+    
+    // ✅ FIXED: Use MONGO_URI instead of MONGODB_URI to match your .env file
+    const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/legal-docs';
+    console.log(`📡 Connecting to: ${mongoUri}\n`);
+    
+    await mongoose.connect(mongoUri);
     console.log('✅ Connected\n');
     
-    // Find first 50 completed cases
+    // Find first 20 completed cases
     const completedCases = await Case.find({ status: 'completed' }).limit(20);
     
     console.log(`Found ${completedCases.length} completed cases`);
