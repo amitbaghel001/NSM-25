@@ -11,6 +11,7 @@ import CreateCase from './pages/CreateCase';
 import UploadDocument from './pages/UploadDocument';
 import Analytics from './pages/Analytics';
 import Scheduling from './pages/Scheduling';
+import AIAnalyzer from './pages/AIAnalyzer';
 
 
 
@@ -29,6 +30,11 @@ function App() {
             <Route path="/upload/:caseId" element={<PrivateRoute><UploadDocument /></PrivateRoute>} />
             <Route path="/analytics" element={<PrivateRoute><Analytics /></PrivateRoute>} />
             <Route path="/scheduling" element={<PrivateRoute><Scheduling /></PrivateRoute>} />
+
+            <Route 
+              path="/ai-analyzer" 
+              element={<PrivateRoute><AIAnalyzer /></PrivateRoute>} 
+                />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>

@@ -6,6 +6,7 @@ import {
   Dashboard as DashboardIcon,
   CalendarMonth,
   Analytics,
+  Psychology, // 🆕 AI icon
   KeyboardArrowDown
 } from '@mui/icons-material';
 import { AuthContext } from '../context/AuthContext';
@@ -43,7 +44,7 @@ const Navbar = () => {
           to="/" 
           sx={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}
         >
-          Legal Document Intelligence
+          JusticeLens
         </Typography>
         
         {user ? (
@@ -56,6 +57,22 @@ const Navbar = () => {
               startIcon={<DashboardIcon />}
             >
               Dashboard
+            </Button>
+
+            {/* 🆕 AI Analyzer Button - Available for ALL users */}
+            <Button 
+              color="inherit" 
+              component={Link} 
+              to="/ai-analyzer"
+              startIcon={<Psychology />}
+              sx={{
+                background: 'rgba(255, 255, 255, 0.1)',
+                '&:hover': {
+                  background: 'rgba(255, 255, 255, 0.2)',
+                }
+              }}
+            >
+              AI Analyzer
             </Button>
 
             {/* Scheduling - Only for Judges */}
@@ -97,6 +114,10 @@ const Navbar = () => {
             >
               <MenuItem onClick={() => handleMenuNavigate('/create-case')}>
                 Create New Case
+              </MenuItem>
+              {/* 🆕 AI Analyzer in dropdown too */}
+              <MenuItem onClick={() => handleMenuNavigate('/ai-analyzer')}>
+                AI Document Analyzer
               </MenuItem>
               {user.role === 'judge' && (
                 <MenuItem onClick={() => handleMenuNavigate('/scheduling')}>
